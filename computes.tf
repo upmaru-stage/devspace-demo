@@ -6,6 +6,8 @@ module "aws_compute_deneb_nuw" {
 
   bastion_size = "t3a.micro"
   cluster_topology = [
+    { id = 1, name = "01", size = "c5a.large" },
+    { id = 2, name = "02", size = "c5a.large" },
   ]
 
   identifier           = "deneb-nuw"
