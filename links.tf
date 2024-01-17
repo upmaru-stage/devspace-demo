@@ -16,31 +16,6 @@ module "instellar_link_deneb_gsm" {
 
 }
 
-module "instellar_link_deneb_swp" {
-  source  = "upmaru/bootstrap/instellar//modules/service"
-  version = "0.6.3"
-
-  certificate = module.aws_database_deneb_ayk.certificate_url
-  channels    = ["main", "master"]
-  cluster_ids = [
-    module.instellar_link_deneb_gsm.cluster_id
-  ]
-  credential = {
-    host     = module.aws_database_deneb_ayk.address
-    password = module.aws_database_deneb_ayk.password
-    port     = module.aws_database_deneb_ayk.port
-    resource = module.aws_database_deneb_ayk.db_name
-    username = module.aws_database_deneb_ayk.username
-    secure   = true
-  }
-
-  driver                = "database/postgresql"
-  driver_version        = module.aws_database_deneb_ayk.engine_version
-  insterra_component_id = 201
-  provider_name         = "aws"
-  slug                  = module.aws_database_deneb_ayk.identifier
-}
-
 module "instellar_link_deneb_zef" {
   source  = "upmaru/bootstrap/instellar//modules/service"
   version = "0.6.3"
@@ -64,4 +39,29 @@ module "instellar_link_deneb_zef" {
   insterra_component_id = 202
   provider_name         = "aws"
   slug                  = module.aws_bucket_deneb_ecp.identifier
+}
+
+module "instellar_link_deneb_swp" {
+  source  = "upmaru/bootstrap/instellar//modules/service"
+  version = "0.6.3"
+
+  certificate = module.aws_database_deneb_ayk.certificate_url
+  channels    = ["main", "master"]
+  cluster_ids = [
+    module.instellar_link_deneb_gsm.cluster_id
+  ]
+  credential = {
+    host     = module.aws_database_deneb_ayk.address
+    password = module.aws_database_deneb_ayk.password
+    port     = module.aws_database_deneb_ayk.port
+    resource = module.aws_database_deneb_ayk.db_name
+    username = module.aws_database_deneb_ayk.username
+    secure   = true
+  }
+
+  driver                = "database/postgresql"
+  driver_version        = module.aws_database_deneb_ayk.engine_version
+  insterra_component_id = 201
+  provider_name         = "aws"
+  slug                  = module.aws_database_deneb_ayk.identifier
 }
