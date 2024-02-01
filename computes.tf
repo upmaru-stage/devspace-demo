@@ -12,7 +12,7 @@ module "aws_compute_deneb_nuw" {
   network_dependencies = module.aws_networking_deneb_fki.dependencies
   node_size            = "t3a.medium"
   public_subnet_ids    = module.aws_networking_deneb_fki.public_subnet_ids
-  ssh_keys             = ["zack-studio", "zack-mbp"]
+  ssh_keys             = ["zack-studio"]
   storage_size         = 40
   volume_type          = "gp3"
   vpc_id               = module.aws_networking_deneb_fki.vpc_id
